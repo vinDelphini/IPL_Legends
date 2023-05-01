@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<div class="card p-3 mx-3 my-3">
 <div class="container-fluid px-4">
     <h1>Matches</h1>
-    <a href="{% url 'match_create' %}" class="btn btn-primary mb-3">Create a new match</a>
-    <table class="table">
-        <form method="GET">
+    <a href="{% url 'match_create' %}" class="btn mb-3"><i class="fas fa-2x fa-plus-circle text-success"></i></a>
+    <table class="table mt-3" style="border: 2px solid #ccc; border-radius: 10px;">
+      <form method="GET"> {% csrf_token %}
             <div class="form-group row">
               <div class="col-6">
                 <input type="text" name="search" class="form-control" placeholder="Search by match number">
@@ -41,4 +43,5 @@
       </tbody>
     </table>
   </div>
+  
 {% endblock %}

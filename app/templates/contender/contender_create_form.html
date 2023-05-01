@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+<div class="card p-3 mx-3 my-5">
+<div class="container-fluid px-4">
+    <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} A New Contender</h1>
+
+    <form method="post">
+      {% csrf_token %}
+    <div class="form-group"> 
+        <input type="text" class="form-control" placeholder="Enter the name of the person" name="name">
+      </div>
+      <button type="submit" class="btn btn-sm btn-primary mt-3">Save</button>
+  </form>
+</div>
+</div>
+{% endblock %}

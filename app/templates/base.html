@@ -58,11 +58,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#" style="font-size:small; color: azure;">Add Score</a>
-                                    <a class="nav-link" href="#" style="font-size:small; color: azure;">Add Legend Cup Score</a>
-                                    <hr>
-                                    <a class="nav-link" href="{% url 'match_create' %}" style="font-size:small; color: azure;">Add Match</a>
-                                    <a class="nav-link" href="#" style="font-size:small; color: azure;">Add Contenders</a>
+                                    <a class="nav-link" href="{% url 'match_score_create' %}" style="font-size:small; color: azure;">Add Score</a>
+                                    <a class="nav-link" href="{% url 'legendcup_list' %}" style="font-size:small; color: azure;">Add Legend Cup Score</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">CONTENDERS & MATCHES</div>
@@ -70,12 +67,12 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-angle-right"></i></div>
                                 VIEW ALL MATCHES
                             </a>
-                            <a class="nav-link" href="{% url 'dashboard' %}">
+                            <a class="nav-link" href="{% url 'contender_list' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-angle-right"></i></div>
                                 VIEW ALL CONTENDERS
                             </a>
                             <hr>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Users
                             </a>

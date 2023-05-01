@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card p-3 mx-3 my-3">
+<div class="container-fluid px-4">
+    <h1>Edit Match {{ object.name }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group row">
+      <label for="{{ form.name.id_for_label }}" class="col-sm-2 col-form-label">Contender Name:</label>
+      <div class="col-sm-3">
+        {{ form.name }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+    <a href="{% url 'contender_list' %}" class="btn btn-sm btn-secondary ">Cancel</a>
+  </form>
+
+</div>
+</div>
+
+{% endblock %}

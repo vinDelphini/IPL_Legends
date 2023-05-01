@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card p-3 mx-3 my-3">
+<div class="container-fluid px-4">
+    <h1>Edit Match {{ object.contender }}</h1>
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="form-group row">
+      <label for="{{ form.contender.id_for_label }}" class="col-sm-2 col-form-label">Contender Name:</label>
+      <div class="col-sm-10">        
+        {{ form.contender }}
+    </div>
+    </div>
+    <div class="form-group row">
+      <label for="{{ form.score.id_for_label }}" class="col-sm-2 col-form-label">Score:</label>
+      <div class="col-sm-3">
+        {{ form.score }}
+      </div>
+    </div>
+
+    
+    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+    <a href="{% url 'legendcup_list' %}" class="btn btn-sm btn-secondary">Cancel</a>
+  </form>
+</div>
+</div>
+
+{% endblock %}

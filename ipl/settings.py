@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'ipl.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "ipllegends",
+        "USER": "postgres",
+        "PASSWORD": "root",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -137,3 +141,66 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+    "formatters": {
+        "basic": {
+            "format": "%(asctime)s %(name)-20s %(levelname)-8s %(message)s",
+        },
+    },
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "basic",
+        },
+    },
+    "loggers": {
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+        "django.security": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+        "apps": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
+    "root": {
+        "handlers": [
+            "console",
+        ],
+        "level": "INFO",
+    },
+}
+
+
+# ADMINS and MANAGERS
+# ADMINS = (("IPL Legends Dashboard Dev Team", "betadelphini.py@gmail.com"),)
+# ADMINS = os.getenv(
+#     "ADMINS",
+#     [
+#         (
+#             "betadelphini.py@gmail.com",
+#         )
+#     ],
+# )
+
+# DEFAULT_FROM_EMAIL = os.getenv(
+#     "betadelphini.py@gmail.com", "DEFAULT_FROM_EMAIL"
+# )

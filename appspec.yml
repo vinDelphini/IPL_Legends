@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/ipllegends
+hooks:
+  BeforeInstall:
+      - location: scripts/before_install.sh
+  AfterInstall:
+      - location: scripts/after_install.sh
+  # testing
+  # ApplicationStart:
+  #     - location: scripts/app_start.sh

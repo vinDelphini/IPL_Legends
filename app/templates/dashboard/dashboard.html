@@ -35,5 +35,28 @@
             </div>
         </div>
     </div> 
+
+<h1>Scoreboard</h1>
+<table class="table mt-3" style="border: 2px solid #ccc; border-radius: 10px;">
+    <thead>
+      <tr>
+        <th>Contender</th>
+        <th>Total Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for score in scores %}
+        <tr>
+          <td>{{ score.name }}</td>
+          <td>{{ score.total_score }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
+
+{% for cs in contender_scores %}
+    <p>{{ cs.contender }} - Total Score: {{ cs.total_score }}</p>
+{% endfor %}
+
 {% endblock %}

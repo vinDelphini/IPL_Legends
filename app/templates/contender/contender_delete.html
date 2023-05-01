@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid px-4">
+  <h1>Delete Match</h1>
+  <p>Are you sure you want to delete "{{ object }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <a href="{% url 'contender_delete' pk=contender.pk %}" class="btn btn-sm btn-danger">Delete</a>
+    <a href="{% url 'contender_list' %}" class="btn btn-sm btn-secondary">Cancel</a>
+  </form>
+</div>
+
+{% endblock %}

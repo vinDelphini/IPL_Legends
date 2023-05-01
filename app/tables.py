@@ -12,3 +12,13 @@ class MatchTable(tables.Table):
         template_name = "common/base_table.html"
         fields = ("match_no",)
         empty_text = "No Matches yet."
+
+
+class ContenderTable(tables.Table):
+    # match_no = tables.LinkColumn("match-edit", args=[A("id")])
+
+    class Meta:
+        model = Contender
+        template_name = "common/base_table.html"
+        fields = ("name",)
+        empty_text = "No Contenders yet."
