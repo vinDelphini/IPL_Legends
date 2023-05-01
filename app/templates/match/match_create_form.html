@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+
+<div class="container-fluid px-4">
+    <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} A New Match</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group row">
+      <label for="id_match_no" class="col-sm-2 col-form-label">Match Number:</label>
+      <div class="col-sm-10">
+      <input type="number" class="col-sm-2" id="id_match_no" name="match_no" required>
+      <small class="form-text text-muted">Enter the match number</small>
+    </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="id_team_1" class="col-sm-2 col-form-label">Team 1:</label>
+      <div class="col-sm-3">
+      <select class="col-sm-10" id="id_team_1" name="team_1" required>
+        <option value="">-- Select a team --</option>
+        {% for team in form.team_1.field.choices %}
+          <option value="{{ team.0 }}">{{ team.1 }}</option>
+        {% endfor %}
+      </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="id_team_2" class="col-sm-2 col-form-label">Team 2:</label>
+      <div class="col-sm-3">
+      <select class="col-sm-10" id="id_team_2" name="team_2" required>
+        <option value="">-- Select a team --</option>
+        {% for team in form.team_2.field.choices %}
+          <option value="{{ team.0 }}">{{ team.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form></div>
+{% endblock %}

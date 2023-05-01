@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid px-4">
+    <h1>Matches</h1>
+    <a href="{% url 'match_create' %}" class="btn btn-primary mb-3">Create a new match</a>
+    <table class="table">
+        <form method="GET">
+            <div class="form-group row">
+              <div class="col-6">
+                <input type="text" name="search" class="form-control" placeholder="Search by match number">
+              </div>
+              <div class="col-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </form>
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">Match Number</th>
+          <th scope="col">Team 1</th>
+          <th scope="col">Team 2</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for match in object_list %}
+          <tr>
+            <td class="text-center">{{ match.match_no }}</td>
+            <td>{{ match.get_team_1_display }}</td>
+            <td>{{ match.get_team_2_display }}</td>
+            <td>
+                <a href="{% url 'match_update' pk=match.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{% url 'match_delete' pk=match.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No matches found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
