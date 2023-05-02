@@ -5,6 +5,8 @@ sudo pkill -f runserver
 
 sudo chown -R $USER /home/ubuntu/ipllegends/
 
+export DJANGO_SETTINGS_MODULE='ipl.settings.base'
+
 # install postgresql
 sudo apt -y install postgresql-12 postgresql-client-12
 

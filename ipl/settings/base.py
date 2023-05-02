@@ -10,11 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+sys.path.insert(0, os.path.join(BASE_DIR, "app"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -82,27 +85,25 @@ WSGI_APPLICATION = 'ipl.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "ipllegends",
-        "USER": "postgres",
-        "PASSWORD": "root",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE":  "django.db.backends.postgresql_psycopg2",
+        "NAME":  "ipllegends",
+        "USER":  "postgres",
+        "PASSWORD":  "root",
+        "HOST":  "localhost",
+        "PORT":  "5432",
     }
 }
 
-# # production
 # DATABASES = {
 #     'default': {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": "ipllegends",
-#         "USER": "postgres",
-#         "PASSWORD": "root",
-#         "HOST": "localhost",
-#         "PORT": "5432",
+#         "ENGINE":  "django.db.backends.postgresql_psycopg2",
+#         "NAME":  os.getenv("DB_NAME", "ipllegends"),
+#         "USER":  os.getenv("DB_USER", "postgres"),
+#         "PASSWORD":  os.getenv("DB_PASSWORD", "root"),
+#         "HOST":  os.getenv("DB_HOST", "localhost"),
+#         "PORT":  os.getenv("DB_PORT", "5432"),
 #     }
 # }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
