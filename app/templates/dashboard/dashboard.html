@@ -7,56 +7,94 @@
         <li class="breadcrumb-item active">Dashboard</li>
     </ol>
     <div class="row">
-        <div class="col-xl-4 col-md-6">
+        <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Primary Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="card-body">First Place</div>
+                <div class="card-footer d-flex align-items-center bg-success justify-content-between">
+                    <small>{{ first_place.name }}</small>
+                    <div class="small text-white">{{ first_place.total_score }}</div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6">
-            <div class="card bg-warning text-white mb-4">
-                <div class="card-body">Warning Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Second Place</div>
+                <div class="card-footer d-flex align-items-center bg-success justify-content-between">
+                    <small>{{ second_place.name }}</small>
+                    <div class="small text-white">{{ second_place.total_score }}</div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-6">
-            <div class="card bg-success text-white mb-4">
-                <div class="card-body">Success Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Third Place</div>
+                <div class="card-footer d-flex align-items-center bg-success justify-content-between">
+                    <small>{{ third_place.name }}</small>
+                    <div class="small text-white">{{ third_place.total_score }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-black  mb-4">
+                <div class="card-body">Legend Cup Holder</div>
+                <div class="card-footer d-flex align-items-center bg-success justify-content-between">
+                    <small class="text-white">{{ legend_first.contender }}</small>
+                    <div class="small text-white">{{ legend_first.score }}</div>
                 </div>
             </div>
         </div>
     </div> 
 
 <h1>Scoreboard</h1>
-<table class="table mt-3" style="border: 2px solid #ccc; border-radius: 10px;">
-    <thead>
-      <tr>
-        <th>Contender</th>
-        <th>Total Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for score in scores %}
-        <tr>
-          <td>{{ score.name }}</td>
-          <td>{{ score.total_score }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area me-1"></i>
+                Scoreboard
+            </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Contender</th>
+                    <th>Total Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for score in scores %}
+                    <tr>
+                      <td>{{ score.name }}</td>
+                      <td>{{ score.total_score }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Legend Cap Scores
+            </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Contender</th>
+                    <th>Total Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for score in legendscores %}
+                    <tr>
+                      <td>{{ score.contender }}</td>
+                      <td>{{ score.score }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
 </div>
-
-{% for cs in contender_scores %}
-    <p>{{ cs.contender }} - Total Score: {{ cs.total_score }}</p>
-{% endfor %}
-
+</div>
 {% endblock %}

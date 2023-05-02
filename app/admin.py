@@ -22,7 +22,7 @@ admin.site.register(Contender, ContenderAdmin)
 
 class MatchScoreAdmin(admin.ModelAdmin):
     list_display = ('id', 'match', 'contender', 'score', 'score_value')
-    list_filter = ('match',)
+    list_filter = ('match', 'contender')
     ordering = ('id',)
 
     def score_value(self, obj):

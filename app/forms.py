@@ -34,10 +34,7 @@ class LegendCupScoreForm(forms.ModelForm):
 
 
 class MatchScoreForm(forms.ModelForm):
-    match = forms.ModelChoiceField(queryset=Match.objects.all(), widget=forms.Select(attrs={'class': 'form-control', 'required': True}))
-    contender = forms.ModelChoiceField(queryset=Contender.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
-    score = forms.ChoiceField(choices=SCORE_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
-
+    
     class Meta:
         model = MatchScore
         fields = ['match', 'contender', 'score']

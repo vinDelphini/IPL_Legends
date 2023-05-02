@@ -1,4 +1,6 @@
 import random
+from django.db.models import Sum
+from operator import attrgetter
 from django.db import models
 from django.db.models import QuerySet
 from django.utils import timezone
@@ -38,6 +40,7 @@ SCORE_CHOICES = [
         (5, '5'),
         (6, '6'),
         (7, '7'),
+        (0, '0'),
     ]
 
 SCORE_MAPPING = {
@@ -48,8 +51,9 @@ SCORE_MAPPING = {
     5: 160,
     6: 150,
     7: 140,
+    0: 140,
 }
-
+                
 
 class IndexedTimeStampedModel(models.Model):
     created = AutoCreatedField("created", db_index=True)
@@ -104,25 +108,28 @@ class MatchScore(models.Model):
         return f'{self.match} - {self.contender} - {self.score}'
 
     def get_score_value(self):
-        return SCORE_MAPPING.get(self.score)
-
-    try:
-        obj, created = MatchScore.objects.update_or_create(
-            match=match,
-            contender=contender,
-            defaults={'score': score},
-        )
-        if not created:
-            # Object was updated
-            print(f"Updated {obj}")
+        # Check if there are any other MatchScore objects with the same match and score
+        other_match_scores = MatchScore.objects.filter(match=self.match, score=self.score).exclude(id=self.id)
+        if other_match_scores.exists() and self.score != 0:
+            return SCORE_MAPPING[self.score] - 5
         else:
-            # Object was created
-            print(f"Created {obj}")
-    except Exception as e:
-        # Handle exception
-        print(e)
+            return SCORE_MAPPING[self.score]
+
+    def save(self, *args, **kwargs):
+        # Check if a record with the same match and contender already exists
+        existing_match_score = MatchScore.objects.filter(match=self.match, contender=self.contender).first()
+
+        if existing_match_score:
+            # Update the existing record instead of creating a new one
+            existing_match_score.score = self.score
+            super(MatchScore, existing_match_score).save(*args, **kwargs)
+        else:
+            super(MatchScore, self).save(*args, **kwargs)
 
 
 class LegendCupScore(models.Model):
     contender = models.ForeignKey(Contender, on_delete=models.CASCADE, null=True, blank=True)
     score = models.DecimalField(max_digits=10, decimal_places=1)
+
+    class Meta:
+        ordering = ['-score']
