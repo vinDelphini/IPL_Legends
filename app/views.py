@@ -49,7 +49,7 @@ class MatchList(ListView):
     model = Match
     template_name = 'match/match_list.html'
     context_object_name = 'matches'
-    paginate_by = 10
+    # paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -154,7 +154,7 @@ class MatchScoreList(ListView):
     template_name = 'matchscore/matchscore_list.html'
 
     def get_queryset(self):
-        return super().get_queryset().order_by('-score')
+        return super().get_queryset().order_by('-match')
 
 
 class MatchScoreUpdateView(UpdateView):
