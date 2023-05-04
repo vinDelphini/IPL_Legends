@@ -1,7 +1,7 @@
 import os
 from ipl.settings.base import *
 
-ALLOWED_HOSTS = ["ec2-54-163-215-193.compute-1.amazonaws.com:8000"]
+ALLOWED_HOSTS = ["ec2-54-163-215-193.compute-1.amazonaws.com"]
 
 DATABASES = {
     'default': {
