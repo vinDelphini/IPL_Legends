@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_tables2',
     'django_extensions',
+    'widget_tweaks',
     # Local apps
     'app.apps.AppConfig',
 

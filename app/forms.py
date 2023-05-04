@@ -38,4 +38,7 @@ class MatchScoreForm(forms.ModelForm):
     class Meta:
         model = MatchScore
         fields = ['match', 'contender', 'score']
-        
+
+
+class ScoreFilterForm(forms.Form):
+    score = forms.ChoiceField(choices=SCORE_CHOICES, required=False, label='Filter by Positions', initial='1')

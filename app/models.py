@@ -1,8 +1,7 @@
 import random
-from django.db.models import Sum
+from django.db.models import Sum, Count, QuerySet
 from operator import attrgetter
 from django.db import models
-from django.db.models import QuerySet
 from django.utils import timezone
 from django_extensions.db.fields import AutoSlugField
 from model_utils.fields import AutoCreatedField, AutoLastModifiedField
@@ -125,6 +124,16 @@ class MatchScore(models.Model):
             super(MatchScore, existing_match_score).save(*args, **kwargs)
         else:
             super(MatchScore, self).save(*args, **kwargs)
+
+    @staticmethod
+    def count_scores_by_contender():
+        # Aggregate count of each score value for each contender and include contender names
+        score_counts = MatchScore.objects.values('contender', 'contender__name', 'score').annotate(score_count=Count('score'))
+
+        # Sort by count in descending order
+        score_counts = score_counts.order_by('-score_count')
+
+        return score_counts
 
 
 class LegendCupScore(models.Model):

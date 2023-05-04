@@ -13,7 +13,7 @@ from django.views.generic import (
 )
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
-from app.forms import MatchForm, ContenderForm, LegendCupScoreForm, MatchScoreForm
+from app.forms import MatchForm, ContenderForm, LegendCupScoreForm, MatchScoreForm, ScoreFilterForm
 from app.models import Match, Contender, MatchScore, LegendCupScore, SCORE_MAPPING
 from app.tables import MatchTable, ContenderTable
 from app.filters import MatchFilterSet
@@ -197,6 +197,14 @@ class Dashboard(TemplateView):
         # Sort scores by total score in descending order
         scores = sorted(scores, key=lambda x: x['total_score'], reverse=True)
         
+        score_filter = self.request.GET.get('score', '1')  # Set default value to '1'
+        score_counts = MatchScore.count_scores_by_contender().filter(score=score_filter)
+
+        context['score_counts'] = score_counts
+
+        # Add the form to the context
+        context['form'] = ScoreFilterForm(self.request.GET)
+
         # Get the top 3 scores
         context['first_place'] = scores[0]
         context['second_place'] = scores[1]
@@ -205,6 +213,7 @@ class Dashboard(TemplateView):
         context['legendscores'] = legendcupscore
         context['legend_first'] = legendcupscore[0]
         context['scores'] = scores
+
         return context
 
     def form_valid(self, form):
