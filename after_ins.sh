@@ -9,7 +9,7 @@ export DJANGO_SETTINGS_MODULE='ipl.settings.base'
 export DB_NAME="postgres"
 export DB_USER="postgres"
 export DB_PASSWORD="asdfghjkl"
-export DB_HOST="ipl-db.c1utzps5ta5g.us-east-1.rds.amazonaws.com"
+export DB_HOST="ipllegends.c3q2g6ckoaii.ap-southeast-2.rds.amazonaws.com"
 export DB_PORT="5432"
 
 # install postgresql

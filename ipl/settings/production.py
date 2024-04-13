@@ -1,7 +1,7 @@
 import os
 from ipl.settings.base import *
 
-ALLOWED_HOSTS = ["ec2-54-163-215-193.compute-1.amazonaws.com"]
+ALLOWED_HOSTS = ["ec2-13-55-65-113.ap-southeast-2.compute.amazonaws.com"]
 
 DATABASES = {
     'default': {
@@ -9,7 +9,7 @@ DATABASES = {
         "NAME":  "postgres",
         "USER":  "postgres",
         "PASSWORD":  "asdfghjkl",
-        "HOST":  "ipl-db.c1utzps5ta5g.us-east-1.rds.amazonaws.com",
+        "HOST":  "ipllegends.c3q2g6ckoaii.ap-southeast-2.rds.amazonaws.com",
         "PORT":  "5432",
     }
 }
