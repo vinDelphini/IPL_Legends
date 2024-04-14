@@ -56,20 +56,38 @@
             </div>
             <table class="table">
                 <thead>
-                  <tr>
-                    <th>Contender</th>
-                    <th>Total Score</th>
-                  </tr>
+                    <tr style="background-color: lightgray;">
+                        <th>Contender</th>
+                        <th>Total Score</th>
+                        <th>Position</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  {% for score in scores %}
-                    <tr>
-                      <td>{{ score.name }}</td>
-                      <td>{{ score.total_score }}</td>
-                    </tr>
-                  {% endfor %}
+                    {% for score in scores %}
+                        <tr {% if score.position <= 3 %} style="background-color: skyblue;" {% endif %}>
+                            <td>{{ score.name }}</td>
+                            <td>{{ score.total_score }}</td>
+                            <td>
+                                {% if score.position <= 3 %}
+                                    {% if score.position == 1 %}
+                                        🥇
+                                    {% elif score.position == 2 %}
+                                        🥈
+                                    {% elif score.position == 3 %}
+                                        🥉
+                                    {% endif %}
+                                {% else %}
+                                    {{ score.position }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
-              </table>
+            </table>
+            
+            
+            
+            
         </div>
     </div>
     <div class="col-xl-6">

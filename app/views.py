@@ -222,8 +222,23 @@ class Dashboard(TemplateView):
         else:
             context['legend_first'] = None
 
-        context['scores'] = scores
+    # Assign positions while handling ties
+        prev_score = None
+        prev_position = 0
+        for index, score in enumerate(scores):
+            if score['total_score'] != prev_score:
+                position = index + 1
+                prev_position = position
+            else:
+                position = prev_position
+            score['position'] = position
+            prev_score = score['total_score']
 
+        # Map positions to emojis
+        emoji_map = {1: '🥇', 2: '🥈', 3: '🥉'}
+
+        context['scores'] = scores
+        context['emoji_map'] = emoji_map
         return context
 
     def form_valid(self, form):
