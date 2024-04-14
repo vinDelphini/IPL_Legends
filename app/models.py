@@ -39,7 +39,7 @@ SCORE_CHOICES = [
         (5, '5'),
         (6, '6'),
         (7, '7'),
-        ('Miss', 'Miss'),
+        (0, 0),
     ]
 
 SCORE_MAPPING = {
@@ -50,7 +50,7 @@ SCORE_MAPPING = {
     5: 60,
     6: 50,
     7: 40,
-    'Miss': 40,
+    0: 40,
 }
                 
 
