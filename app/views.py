@@ -206,12 +206,22 @@ class Dashboard(TemplateView):
         context['form'] = ScoreFilterForm(self.request.GET)
 
         # Get the top 3 scores
-        context['first_place'] = scores[0]
-        context['second_place'] = scores[1]
-        context['third_place'] = scores[2]
-
+        if scores:
+            context['first_place'] = scores[0]
+            context['second_place'] = scores[1]
+            context['third_place'] = scores[2]
+        else:
+            context['first_place'] = None
+            context['second_place'] = None
+            context['third_place'] = None       
+        
         context['legendscores'] = legendcupscore
-        context['legend_first'] = legendcupscore[0]
+        
+        if legendcupscore:
+            context['legend_first'] = legendcupscore[0]
+        else:
+            context['legend_first'] = None
+
         context['scores'] = scores
 
         return context

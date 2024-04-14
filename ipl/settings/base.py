@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-@85me$ra05-4xs#2-vh@t^i_2mxsmz%9p*k&tv$$8@^k%@+4_3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -84,27 +84,27 @@ WSGI_APPLICATION = 'ipl.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        "ENGINE":  "django.db.backends.postgresql_psycopg2",
-        "NAME":  "ipllegends",
-        "USER":  "postgres",
-        "PASSWORD":  "root",
-        "HOST":  "localhost",
-        "PORT":  "5432",
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         "ENGINE":  "django.db.backends.postgresql_psycopg2",
-#         "NAME":  os.getenv("DB_NAME", "ipllegends"),
-#         "USER":  os.getenv("DB_USER", "postgres"),
-#         "PASSWORD":  os.getenv("DB_PASSWORD", "root"),
-#         "HOST":  os.getenv("DB_HOST", "localhost"),
-#         "PORT":  os.getenv("DB_PORT", "5432"),
+#         "NAME":  "ipllegends",
+#         "USER":  "postgres",
+#         "PASSWORD":  "root",
+#         "HOST":  "localhost",
+#         "PORT":  "5432",
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        "ENGINE":  "django.db.backends.postgresql_psycopg2",
+        "NAME":  os.getenv("DB_NAME", "ipllegends"),
+        "USER":  os.getenv("DB_USER", "postgres"),
+        "PASSWORD":  os.getenv("DB_PASSWORD", "root"),
+        "HOST":  os.getenv("DB_HOST", "localhost"),
+        "PORT":  os.getenv("DB_PORT", "5432"),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
