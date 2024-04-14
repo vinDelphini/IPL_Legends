@@ -6,7 +6,7 @@ sudo pkill -f runserver
 sudo chown -R $USER /home/ubuntu/ipllegends/
 
 export DJANGO_SETTINGS_MODULE='ipl.settings.production'
-export DB_NAME="ipllegends"
+export DB_NAME="postgres"
 export DB_USER="postgres"
 export DB_PASSWORD="asdfghjkl"
 export DB_HOST="ipllegends.c3q2g6ckoaii.ap-southeast-2.rds.amazonaws.com"
