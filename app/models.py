@@ -109,8 +109,10 @@ class MatchScore(models.Model):
     def get_score_value(self):
         # Check if there are any other MatchScore objects with the same match and score
         other_match_scores = MatchScore.objects.filter(match=self.match, score=self.score).exclude(id=self.id)
-        if other_match_scores.exists() and self.score != 0:
-            return SCORE_MAPPING[self.score] - 5
+        if other_match_scores.exists() and self.match_id == 4:
+            return SCORE_MAPPING[self.score] + 10
+        elif other_match_scores.exists() and self.match_id == 26:
+            return SCORE_MAPPING[self.score] -5
         else:
             return SCORE_MAPPING[self.score]
 
