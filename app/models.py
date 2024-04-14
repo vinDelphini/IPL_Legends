@@ -13,7 +13,7 @@ TEAMS = [
     ('DC', 'Delhi Capitals'),
     ('GT', 'Gujrat Titans'),
     ('KKR' ,'Kolkata Knight Riders'),
-    ('LSG', 'Lucknow Super Giants'),
+    ('LKN', 'Lucknow Super Giants'),
     ('MI', 'Mumbai Indians'),
     ('KIXP', 'Punjab Kings'),
     ('RR', 'Rajasthan Royals'),
@@ -50,7 +50,7 @@ SCORE_MAPPING = {
     5: 60,
     6: 50,
     7: 40,
-    0: 40,
+    'Miss': 40,
 }
                 
 
