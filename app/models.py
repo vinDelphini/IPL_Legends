@@ -111,7 +111,7 @@ class MatchScore(models.Model):
         other_match_scores = MatchScore.objects.filter(match=self.match, score=self.score).exclude(id=self.id)
         if other_match_scores.exists() and self.match_id == 4:
             return SCORE_MAPPING[self.score] + 10
-        elif other_match_scores.exists() and (self.match_id == 26 or self.match_id == 37):
+        elif other_match_scores.exists() and (self.match_id == 26 or self.match_id == 37 or self.match_id == 44):
             return SCORE_MAPPING[self.score] -5
         else:
             return SCORE_MAPPING[self.score]
